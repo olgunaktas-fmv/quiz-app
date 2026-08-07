@@ -1,9 +1,12 @@
 import { useAuth } from "../../hooks/useAuth";
+import { useSessionGuard } from "../../hooks/useSessionGuard";
 import AuthScreen from "./AuthScreen";
 import ContestList from "./ContestList";
 
 export default function PlayerScreen() {
   const { user, loading } = useAuth();
+
+  useSessionGuard(user?.uid);
 
   if (loading) {
     return (

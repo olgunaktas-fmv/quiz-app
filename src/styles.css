@@ -674,6 +674,16 @@ select:focus {
   margin: 0;
 }
 
+.notice-text {
+  color: var(--accent);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 /* ---------- Player home ---------- */
 
 .player-home {
@@ -698,6 +708,14 @@ select:focus {
   align-items: center;
   gap: 8px;
   color: var(--muted);
+}
+
+button.new-player-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 16px;
+  min-height: 0;
+  white-space: nowrap;
 }
 
 .contest-list.wide {

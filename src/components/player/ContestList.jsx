@@ -26,9 +26,15 @@ export default function ContestList() {
       <header className="player-header">
         <h1>Quiz Arena</h1>
         <div className="player-user">
-          {username}
-          <button className="icon-btn" onClick={logout}>
-            Çıkış
+          <span>
+            Oyuncu: <strong>{username}</strong>
+          </span>
+          <button
+            className="new-player-btn"
+            onClick={logout}
+            title="Bu oturumu kapat ve yeni oyuncu olarak giriş yap"
+          >
+            Yeni Oyuncu
           </button>
         </div>
       </header>

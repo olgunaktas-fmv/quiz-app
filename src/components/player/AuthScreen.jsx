@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login, register } from "../../db/auth";
+import { SESSION_GUARD_KEY } from "../../hooks/useSessionGuard";
 
 export default function AuthScreen() {
   const [mode, setMode] = useState("login");
@@ -7,6 +8,13 @@ export default function AuthScreen() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState(
+    () => sessionStorage.getItem(SESSION_GUARD_KEY) || ""
+  );
+
+  useEffect(() => {
+    if (notice) sessionStorage.removeItem(SESSION_GUARD_KEY);
+  }, [notice]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,6 +67,7 @@ export default function AuthScreen() {
             placeholder="Şifre (en az 6 karakter)"
           />
           {error && <p className="error-text">{error}</p>}
+          {notice && <p className="notice-text">{notice}</p>}
           <button
             type="submit"
             disabled={!username.trim() || password.length < 6 || busy}
