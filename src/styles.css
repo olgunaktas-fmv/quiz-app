@@ -127,6 +127,20 @@ select:focus {
   animation: spin 0.9s linear infinite;
 }
 
+.error-boundary pre {
+  max-width: 100%;
+  overflow: auto;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  color: var(--danger);
+  font-size: 0.85rem;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
