@@ -24,7 +24,8 @@ export function useAuth() {
       return undefined;
     }
     const off = onValue(userRef(user.uid), (snap) => {
-      setUsername(snap.val()?.username ?? null);
+      const stored = snap.val()?.username;
+      setUsername(stored ?? user.email?.split("@")[0] ?? null);
     });
     return off;
   }, [user]);
