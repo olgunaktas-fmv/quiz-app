@@ -10,7 +10,6 @@ import {
   gradeOf,
   normalizeOptions,
   optionText,
-  pointsOf,
 } from "../../lib/questionMeta";
 
 const LETTERS = ["A", "B", "C", "D", "E"];
@@ -31,7 +30,6 @@ export default function QuestionPool() {
   const [grade, setGrade] = useState("Genel");
   const [branch, setBranch] = useState("");
   const [difficulty, setDifficulty] = useState("orta");
-  const [points, setPoints] = useState("");
   const [options, setOptions] = useState(EMPTY_OPTIONS);
   const [correctIndex, setCorrectIndex] = useState(0);
   const [timeLimit, setTimeLimit] = useState(20);
@@ -60,7 +58,6 @@ export default function QuestionPool() {
       grade,
       branch: branch.trim() || undefined,
       difficulty,
-      points: points ? Number(points) : undefined,
       options: filled.map((o) => (o.imageUrl ? o : o.text)),
       correctIndex,
       timeLimit: Number(timeLimit),
@@ -71,7 +68,6 @@ export default function QuestionPool() {
     setGrade("Genel");
     setBranch("");
     setDifficulty("orta");
-    setPoints("");
     setOptions(EMPTY_OPTIONS);
     setCorrectIndex(0);
   };
@@ -118,16 +114,6 @@ export default function QuestionPool() {
                 </option>
               ))}
             </select>
-          </label>
-          <label className="field">
-            <span>Puan (opsiyonel)</span>
-            <input
-              type="number"
-              min={1}
-              value={points}
-              onChange={(e) => setPoints(e.target.value)}
-              placeholder="Boş bırakılabilir"
-            />
           </label>
         </div>
 
@@ -207,9 +193,6 @@ export default function QuestionPool() {
                   <span className="badge">{gradeLabel(q)}</span>
                   {q.branch && <span className="badge">{q.branch}</span>}
                   <span className="badge diff">{difficultyLabel(q)}</span>
-                  {pointsOf(q) != null && (
-                    <span className="badge points">🏆 {pointsOf(q)} Puan</span>
-                  )}
                 </div>
               </div>
               <button className="icon-btn" onClick={() => removeQuestion(q.id)}>
