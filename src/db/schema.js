@@ -19,3 +19,7 @@ export const contestAnswersForQuestionRef = (contestId, questionId) =>
 export const contestPlayerAnswerRef = (contestId, questionId, uid) =>
   ref(db, `answers/${contestId}/${questionId}/${uid}`);
 export const resultsForContestRef = (contestId) => ref(db, `results/${contestId}`);
+export const presenceRef = ref(db, "presence");
+export const presenceSessionsRef = (uid) => ref(db, `presence/${uid}/sessions`);
+export const presenceSessionRef = (uid, sessionId) =>
+  ref(db, `presence/${uid}/sessions/${sessionId}`);

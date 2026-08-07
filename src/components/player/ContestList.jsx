@@ -5,11 +5,13 @@ import { logout } from "../../db/auth";
 import ContestJoin from "./ContestJoin";
 import ContestView from "./ContestView";
 
-export default function ContestList() {
+export default function ContestList({ presence }) {
   const { username } = useAuth();
   const contests = useContests();
   const [selectedId, setSelectedId] = useState(null);
   const [joined, setJoined] = useState(false);
+
+  const { online, otherActive } = presence || { online: false, otherActive: false };
 
   const selected = contests.find((c) => c.id === selectedId) || null;
   const joinable = contests.filter(
@@ -29,6 +31,7 @@ export default function ContestList() {
           <span>
             Oyuncu: <strong>{username}</strong>
           </span>
+          <span className={`presence-dot ${online ? "online" : ""}`} title={online ? "Çevrimiçi" : "Çevrimdışı"} />
           <button
             className="new-player-btn"
             onClick={logout}
@@ -38,6 +41,12 @@ export default function ContestList() {
           </button>
         </div>
       </header>
+
+      {otherActive && (
+        <p className="warn-text">
+          Bu oyuncu zaten başka bir cihazda/sekmede giriş yapmış durumda.
+        </p>
+      )}
 
       {!selectedId && (
         <div className="contest-list wide">
