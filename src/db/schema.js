@@ -1,15 +1,21 @@
 import { ref } from "firebase/database";
 import { db } from "../firebase";
 
-export const gameRef = ref(db, "game");
+export const usersRef = ref(db, "users");
+export const adminsRef = ref(db, "admins");
+export const contestsRef = ref(db, "contests");
 export const questionsRef = ref(db, "questions");
-export const playersRef = ref(db, "players");
-export const answersRef = ref(db, "answers");
-export const scoresRef = ref(db, "scores");
 
-export const questionRef = (id) => ref(db, `questions/${id}`);
-export const playerRef = (id) => ref(db, `players/${id}`);
-export const questionAnswersRef = (questionId) => ref(db, `answers/${questionId}`);
-export const playerAnswerRef = (questionId, playerId) =>
-  ref(db, `answers/${questionId}/${playerId}`);
-export const scoreRef = (playerId) => ref(db, `scores/${playerId}`);
+export const userRef = (uid) => ref(db, `users/${uid}`);
+export const adminRef = (username) => ref(db, `admins/${username}`);
+export const contestRef = (contestId) => ref(db, `contests/${contestId}`);
+export const questionRef = (questionId) => ref(db, `questions/${questionId}`);
+export const contestPlayersForRef = (contestId) =>
+  ref(db, `contestPlayers/${contestId}`);
+export const contestPlayerRef = (contestId, uid) =>
+  ref(db, `contestPlayers/${contestId}/${uid}`);
+export const contestAnswersForQuestionRef = (contestId, questionId) =>
+  ref(db, `answers/${contestId}/${questionId}`);
+export const contestPlayerAnswerRef = (contestId, questionId, uid) =>
+  ref(db, `answers/${contestId}/${questionId}/${uid}`);
+export const resultsForContestRef = (contestId) => ref(db, `results/${contestId}`);

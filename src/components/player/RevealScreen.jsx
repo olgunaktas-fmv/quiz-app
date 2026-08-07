@@ -1,10 +1,6 @@
-import { usePlayerAnswer } from "../../hooks/usePlayerAnswer";
-
 const LETTERS = ["A", "B", "C", "D", "E"];
 
-export default function RevealScreen({ question, playerId }) {
-  const answer = usePlayerAnswer(question?.id, playerId);
-
+export default function RevealScreen({ question, myAnswer }) {
   if (!question) {
     return (
       <div className="screen loading-screen">
@@ -14,8 +10,9 @@ export default function RevealScreen({ question, playerId }) {
     );
   }
 
-  const answered = !!answer;
-  const isCorrect = answered && answer.selectedIndex === question.correctIndex;
+  const answered = !!myAnswer;
+  const isCorrect =
+    answered && myAnswer.selectedIndex === question.correctIndex;
 
   return (
     <div className="screen reveal-screen">
@@ -32,7 +29,7 @@ export default function RevealScreen({ question, playerId }) {
       <div className="options options-static">
         {question.options.map((opt, i) => {
           const isCorrectOpt = i === question.correctIndex;
-          const isPlayerOpt = answered && i === answer.selectedIndex;
+          const isPlayerOpt = answered && i === myAnswer.selectedIndex;
           const cls = [
             "option",
             isCorrectOpt ? "correct" : "",
@@ -43,13 +40,17 @@ export default function RevealScreen({ question, playerId }) {
               <span className="option-letter">{LETTERS[i]}</span>
               <span className="option-text">{opt}</span>
               {isCorrectOpt && <span className="option-mark">✓</span>}
-              {isPlayerOpt && !isCorrectOpt && <span className="option-mark">✗</span>}
+              {isPlayerOpt && !isCorrectOpt && (
+                <span className="option-mark">✗</span>
+              )}
             </div>
           );
         })}
       </div>
 
-      <p className="waiting-note">Yarışma devam ediyor, sıradaki soru bekleniyor...</p>
+      <p className="waiting-note">
+        Yarışma devam ediyor, sıradaki soru bekleniyor...
+      </p>
     </div>
   );
 }

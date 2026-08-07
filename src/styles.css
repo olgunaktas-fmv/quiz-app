@@ -624,6 +624,280 @@ select:focus {
   align-items: center;
 }
 
+/* ---------- Auth ---------- */
+
+.auth-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-card h1 {
+  margin: 0;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  min-height: 44px;
+  padding: 8px;
+}
+
+.auth-tabs button.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+.error-text {
+  color: var(--danger);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ---------- Player home ---------- */
+
+.player-home {
+  justify-content: flex-start;
+}
+
+.player-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.player-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.player-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.contest-list.wide {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contest-list.wide h2 {
+  margin: 0 0 4px;
+}
+
+.contest-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  min-height: 60px;
+  text-align: left;
+}
+
+.contest-card.selected {
+  border-color: var(--accent);
+  background: rgba(108, 92, 231, 0.15);
+}
+
+.contest-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-badge.open {
+  background: rgba(46, 213, 115, 0.18);
+  color: var(--success);
+}
+
+.status-badge.live {
+  background: rgba(255, 71, 87, 0.18);
+  color: var(--danger);
+}
+
+.status-badge.finished {
+  background: var(--panel-2);
+  color: var(--muted);
+}
+
+/* ---------- Join contest ---------- */
+
+.join-contest {
+  width: 100%;
+  max-width: 460px;
+}
+
+.join-contest h2 {
+  margin: 0;
+}
+
+.join-contest form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.back-btn {
+  align-self: flex-start;
+}
+
+/* ---------- Admin: contests ---------- */
+
+.admin-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-title-row h1 {
+  margin: 0;
+}
+
+.admin-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.contest-form {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.contest-form input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.contest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contest-list h3 {
+  margin: 0;
+}
+
+.player-count {
+  color: var(--muted);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.contest-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.contest-head h2 {
+  margin: 0;
+}
+
+.detail-block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.detail-block h3 {
+  margin: 0;
+}
+
+.player-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+}
+
+.player-list li {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.send-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.leaderboard-table th {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.leaderboard-table tr.leader td {
+  color: var(--accent-2);
+  font-weight: 700;
+}
+
 /* Small screens */
 
 @media (max-width: 640px) {
