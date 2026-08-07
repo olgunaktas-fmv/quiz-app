@@ -4,9 +4,9 @@ import { addQuestion, removeQuestion } from "../../db/api";
 import ImageUrlInput from "./ImageUrlInput";
 import {
   BRANCH_SUGGESTIONS,
-  DIFFICULTY_LABEL,
   DIFFICULTY_OPTIONS,
   GRADE_OPTIONS,
+  difficultyLabel,
   gradeOf,
   normalizeOptions,
   optionText,
