@@ -15,6 +15,12 @@ import {
   startContest,
 } from "../../db/api";
 import ResultsTable from "./ResultsTable";
+import {
+  difficultyLabel,
+  gradeOf,
+  normalizeOptions,
+  optionText,
+} from "../../lib/questionMeta";
 
 const LETTERS = ["A", "B", "C", "D", "E"];
 const STATUS_LABEL = { open: "Açık", live: "Canlı", finished: "Bitti" };
@@ -104,7 +110,14 @@ export default function ContestDetail({ contestId }) {
                     <option value="">Soru seçin...</option>
                     {questions.map((q) => (
                       <option key={q.id} value={q.id}>
-                        {q.text.slice(0, 60)}
+                        {[
+                          gradeOf(q) === "Genel" ? "Genel" : `${gradeOf(q)}. Sınıf`,
+                          q.branch,
+                          difficultyLabel(q),
+                        ]
+                          .filter(Boolean)
+                          .join(" · ")}{" "}
+                        — {q.text.slice(0, 50)}
                       </option>
                     ))}
                   </select>
@@ -125,6 +138,9 @@ export default function ContestDetail({ contestId }) {
                 </div>
               </div>
               <div className="question-preview">
+                {currentQuestion?.imageUrl && (
+                  <img src={currentQuestion.imageUrl} alt="Soru görseli" />
+                )}
                 <p>{currentQuestion?.text}</p>
               </div>
               <div className="answer-feed">
@@ -163,7 +179,12 @@ export default function ContestDetail({ contestId }) {
                 Doğru cevap:{" "}
                 <strong>
                   {LETTERS[currentQuestion?.correctIndex]} ·{" "}
-                  {currentQuestion?.options?.[currentQuestion?.correctIndex]}
+                  {currentQuestion &&
+                    optionText(
+                      normalizeOptions(currentQuestion.options)[
+                        currentQuestion.correctIndex
+                      ]
+                    )}
                 </strong>
               </p>
               <ResultsTable results={results} playerName={playerName} />

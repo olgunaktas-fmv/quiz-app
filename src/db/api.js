@@ -17,8 +17,12 @@ import {
   questionsRef,
 } from "./schema";
 
-export const addQuestion = (data) =>
-  push(questionsRef, { ...data, createdAt: serverTimestamp() });
+export const addQuestion = (data) => {
+  const clean = { ...data };
+  if (!clean.imageUrl) delete clean.imageUrl;
+  if (!clean.points) delete clean.points;
+  return push(questionsRef, { ...clean, createdAt: serverTimestamp() });
+};
 
 export const removeQuestion = (id) => remove(questionRef(id));
 
